@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rescoop</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>Rescoop</h1>
+    <button id="save-btn" title="Save current tab">Save this tab</button>
+  </header>
+
+  <main id="list-container">
+    <p id="empty-state">No URLs saved yet.<br />Press <kbd>Alt+Shift+S</kbd> on any tab.</p>
+    <ul id="url-list"></ul>
+  </main>
+
+  <footer>
+    <button id="copy-btn" disabled>Copy all &amp; clear</button>
+    <span id="copy-feedback"></span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

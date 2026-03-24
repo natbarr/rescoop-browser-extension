@@ -43,10 +43,10 @@ function render(urls) {
 
 async function deleteItem(index) {
   const { urls = [] } = await chrome.storage.local.get("urls");
-  urls.splice(index, 1);
-  await chrome.storage.local.set({ urls });
-  updateBadge(urls.length);
-  render(urls);
+  const updated = urls.filter((_, i) => i !== index);
+  await chrome.storage.local.set({ urls: updated });
+  updateBadge(updated.length);
+  render(updated);
 }
 
 async function copyAll() {
@@ -75,10 +75,10 @@ async function saveCurrentTab() {
   };
 
   const { urls = [] } = await chrome.storage.local.get("urls");
-  urls.unshift(entry);
-  await chrome.storage.local.set({ urls });
-  updateBadge(urls.length);
-  render(urls);
+  const updated = [entry, ...urls];
+  await chrome.storage.local.set({ urls: updated });
+  updateBadge(updated.length);
+  render(updated);
 }
 
 function updateBadge(count) {

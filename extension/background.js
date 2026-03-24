@@ -11,10 +11,10 @@ chrome.commands.onCommand.addListener(async (command) => {
   };
 
   const { urls = [] } = await chrome.storage.local.get("urls");
-  urls.unshift(entry);
-  await chrome.storage.local.set({ urls });
+  const updated = [entry, ...urls];
+  await chrome.storage.local.set({ urls: updated });
 
-  chrome.action.setBadgeText({ text: String(urls.length) });
+  chrome.action.setBadgeText({ text: String(updated.length) });
   chrome.action.setBadgeBackgroundColor({ color: "#4A90D9" });
 });
 
